@@ -6,22 +6,23 @@
  *     ListNode(int x) { val = x; }
  * }
  */
-import java.util.Stack;
-
 class Solution {
     public int[] reversePrint(ListNode head) {
-        Stack<Integer> s = new Stack<Integer>();
-        while(head != null){
-            s.push(head.val);
-            head = head.next;
+        if (head == null)
+            return new int[0];
+        int len = 0;
+        ListNode tmp = head;
+        while (tmp != null){
+            tmp = tmp.next;
+            len++;
         }
-        int length = s.size();
-        int retarr[] = new int[length];
-        int cnt=0;
-        while(s.empty()==false){
-            retarr[cnt]=s.pop();
-            cnt++;
+        int [] ret = new int[len];
+        int idx = len-1;
+        tmp = head;
+        while (tmp != null){
+            ret[idx--] = tmp.val;
+            tmp = tmp.next;
         }
-        return retarr;
+        return ret;
     }
 }

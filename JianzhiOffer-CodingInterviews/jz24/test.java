@@ -6,19 +6,37 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+ // 头插法！
+// class Solution {
+//     public ListNode reverseList(ListNode head) {
+//         if (head == null)
+//             return null;
+//         ListNode dummy = new ListNode(0);
+//         ListNode nextnode = null;
+//         while (head != null){
+//             ListNode tmp = head.next;
+//             dummy.next = head;
+//             head.next = nextnode;
+//             nextnode = head;
+//             head = tmp;
+//         }
+//         return dummy.next;
+//     }
+// }
+
+// 迭代, 省去分配dummy head的空间
 class Solution {
     public ListNode reverseList(ListNode head) {
-        if (head==null){
+        if (head == null)
             return null;
+        ListNode nextnode = null;
+        while (head != null){
+            ListNode tmp = head.next;
+            head.next = nextnode;
+            nextnode = head;
+            head = tmp;
         }
-        ListNode prev = null;
-        while (head.next != null){
-            ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;
-        }
-        head.next=prev;
-        return head;
+        return nextnode;
     }
 }
